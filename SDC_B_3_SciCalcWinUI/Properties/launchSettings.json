@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SDC_B_3_SciCalcWinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SDC_B_3_SciCalcWinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
