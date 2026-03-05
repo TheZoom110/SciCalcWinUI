@@ -83,6 +83,7 @@ namespace SDC_B_3_SciCalcWinUI
                          expr.Substring(pos).StartsWith("log") ||
                          expr.Substring(pos).StartsWith("ln") ||
                          expr.Substring(pos).StartsWith("mod") ||
+                         expr.Substring(pos).StartsWith("sqrt") ||
                          expr.Substring(pos).StartsWith(Math.PI.ToString("G15")) ||
                          expr.Substring(pos).StartsWith(Math.E.ToString("G15")))
                 {
