@@ -145,13 +145,25 @@ namespace SDC_B_3_SciCalcWinUI
                 }
             }
 
-            // Numbers
+            // Numbers (including scientific notation e.g. 1.5E+33, 2.3E-10)
             int start = pos;
             if (pos < expr.Length && expr[pos] == '-') pos++;
             while (pos < expr.Length && (char.IsDigit(expr[pos]) || expr[pos] == '.'))
                 pos++;
+
+            // Handle scientific notation: E or e followed by optional + or - and digits
+            if (pos < expr.Length && (expr[pos] == 'E' || expr[pos] == 'e'))
+            {
+                pos++; // consume E
+                if (pos < expr.Length && (expr[pos] == '+' || expr[pos] == '-'))
+                    pos++; // consume + or -
+                while (pos < expr.Length && char.IsDigit(expr[pos]))
+                    pos++; // consume exponent digits
+            }
+
             if (pos == start) return double.NaN;
-            return double.Parse(expr.Substring(start, pos - start));
+            return double.Parse(expr.Substring(start, pos - start),
+                System.Globalization.CultureInfo.InvariantCulture);
         }
 
         // ── Trig Helpers ──────────────────────────────────────────

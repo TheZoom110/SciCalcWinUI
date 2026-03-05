@@ -10,8 +10,8 @@
 
   <Identity
     Name="2cf99d60-9a58-41ec-9783-cbc07abbd4e9"
-    Publisher="CN=souka"
-    Version="1.0.0.0" />
+    Publisher="CN=TheZoom110"
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="2cf99d60-9a58-41ec-9783-cbc07abbd4e9" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
