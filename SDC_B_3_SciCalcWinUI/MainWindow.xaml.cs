@@ -287,15 +287,7 @@ namespace SDC_B_3_SciCalcWinUI
             ExpressionText.Text = DisplayText.Text;
         }
 
-        private void Percent_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                double result = ExpressionParser.Evaluate(_rawExpression) / 100;
-                ShowResult(result);
-            }
-            catch { DisplayText.Text = "Error"; }
-        }
+        private void Mod_Click(object sender, RoutedEventArgs e) => AppendOperator("mod", "mod");
 
         // ── Responsiveness ────────────────────────────────────────
 

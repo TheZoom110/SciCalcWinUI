@@ -69,6 +69,12 @@ namespace SDC_B_3_SciCalcWinUI
                     if (op == '/' && right == 0) return double.NaN;
                     left = op == '*' ? left * right : left / right;
                 }
+                else if (expr.Substring(pos).StartsWith("mod"))
+                {
+                    pos += 3; // skip 'mod'
+                    double right = ParsePower();
+                    left = right != 0 ? left % right : double.NaN;
+                }
                 // Implicit multiplication: number followed by '(', a function, or a constant
                 else if (expr[pos] == '(' ||
                          expr.Substring(pos).StartsWith("sin") ||
@@ -76,6 +82,7 @@ namespace SDC_B_3_SciCalcWinUI
                          expr.Substring(pos).StartsWith("tan") ||
                          expr.Substring(pos).StartsWith("log") ||
                          expr.Substring(pos).StartsWith("ln") ||
+                         expr.Substring(pos).StartsWith("mod") ||
                          expr.Substring(pos).StartsWith("sqrt") ||
                          expr.Substring(pos).StartsWith(Math.PI.ToString("G15")) ||
                          expr.Substring(pos).StartsWith(Math.E.ToString("G15")))
@@ -125,7 +132,7 @@ namespace SDC_B_3_SciCalcWinUI
             }
 
             // Functions
-            string[] functions = { "sin", "cos", "tan", "log", "ln", "sqrt" };
+            string[] functions = { "sin", "cos", "tan", "log", "ln", "sqrt", "mod" };
             foreach (string fn in functions)
             {
                 if (pos + fn.Length <= expr.Length &&
@@ -141,6 +148,7 @@ namespace SDC_B_3_SciCalcWinUI
                         case "log": return Math.Log10(arg);
                         case "ln": return Math.Log(arg);
                         case "sqrt": return arg >= 0 ? Math.Sqrt(arg) : double.NaN;
+                        case "mod": return double.NaN; // mod is handled as binary op, not unary
                         default: return double.NaN;
                     }
                 }
