@@ -102,8 +102,10 @@ namespace SDC_B_3_SciCalcWinUI
             }
             else
             {
+                // Display uses G10 (may show E notation)
                 DisplayText.Text = rounded.ToString("G10");
-                _rawExpression = rounded.ToString("G10");
+                // Raw expression uses R format to preserve full precision without E notation issues
+                _rawExpression = rounded.ToString("R", System.Globalization.CultureInfo.InvariantCulture);
             }
             ExpressionText.Text = DisplayText.Text;
             _newEntry = true;
